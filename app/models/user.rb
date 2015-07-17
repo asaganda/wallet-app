@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   # firstname, lastname, and email all must be present 
   # for a user to be valid
-  validates_presence_of :fname, :lname, :email
+  validates_presence_of :fname, :lname, :email, :password
   # tests that the email provided by user is unique and 
   # that the database doesn't have that email already 
   # (no account previously made)
   validates_uniqueness_of :email
+  # tests to confirm the password entered
+  validates_confirmation_of :password
   #we want the user to input their phone number with dashes
   validates_format_of :phone, with: /\d{3}-\d{3}-\d{4}/
   # the account balance must be greater than 0.00

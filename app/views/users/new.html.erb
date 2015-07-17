@@ -1,0 +1,19 @@
+<!-- If any new user has an error/problem creating their login, prompt the full error messages -->
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!-- form for a new user (create) -->
+<%= form_for @user do |f| %>
+  <%= f.text_field :fname, placeholder: 'First Name' %><br>
+  <%= f.text_field :lname, placeholder: 'Last Name' %><br>
+  <%= f.text_field :email, placeholder: 'Email' %><br>
+  <%= f.text_field :phone, placeholder: 'Phone' %><br>
+  <%= f.password_field :password, placeholder: 'Password' %><br>
+  <%= f.password_field :password_confirmation, placeholder: 'Confirm password' %><br>
+  <%= f.submit 'Sign Up' %>
+<% end %>

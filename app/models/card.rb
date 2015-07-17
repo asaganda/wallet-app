@@ -22,7 +22,7 @@ class Card < ActiveRecord::Base
 
     # since we're setting type for this card use self.
       # we have to use self.type otherwitse it will set the type as a variable
-    self.type = case first_num
+    self.card_type = case first_num
 
     # first_num is in a string..so has to be '3'
     when '3'

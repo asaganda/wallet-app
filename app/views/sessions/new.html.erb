@@ -1,0 +1,11 @@
+<!-- this is the page for a new session (when someone logs in) -->
+<h1>Log In</h1>
+<!-- what is this form structure again? -->
+<!-- why are we routing to '/sessions'? -->
+<%= form_tag '/sessions' do %>
+  <%= text_field_tag :email %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Log In" %>
+<% end %>
+
+No account? <%= link_to 'Sign Up', new_user_path %>
