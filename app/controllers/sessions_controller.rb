@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+  # we have this because a new user doesn't have a session until they log in
+  def new
+    session[:user_id] = nil
+  end
+
 
   # this creates a session
   def create
@@ -24,9 +29,13 @@ class SessionsController < ApplicationController
     end
   end
   # this destroys the current session
+  # don't know why we changed this from what it was, ASK!
+  # message appears when user is logged out and then
+  # redirects them to the root page
   def destroy
-    user = User.find params[:id]
-    user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "Logged Out"
+    redirect_to root_path
   end
 
 end

@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     # get redirected to the users path
     if @user.valid?
       flash[:notice] = "Thanks for signing up"
+      # what is this line for?
+      session[:user_id] = @user.id
       redirect_to users_path
     # if the user is invalid, they also get a flash message
     # and get a new form which i believe is the new sign-up
@@ -36,6 +38,7 @@ class UsersController < ApplicationController
                                  :lname, 
                                  :password,
                                  :email,
+                                 :phone,
                                  :password_confirmation)
   end
 

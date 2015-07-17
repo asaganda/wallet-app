@@ -12,7 +12,8 @@
 <!-- what does this do? -->
 <%= render 'shared/flashes' %>
 <!-- this creates a link of logout to the current user who is currently in a session -->
-<%= link_to 'Logout' if currrent_user %>
+<!-- what does session_path and method do? -->
+<%= link_to 'Logout', session_path(currrent_user.id), method: :delete if currrent_user %>
 
 <%= yield %>
 
