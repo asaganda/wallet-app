@@ -1,8 +1,8 @@
-<!-- this lists all the users, first and last names -->
+<!-- this lists all the users, their full names -->
 <!-- then shows a link to each user's index(list) of cards they have -->
 <% @users.each do |user| %>
   <div>
-    <%= "#{user.fname} #{user.lname}" %>
+    <%= user.full_name %>
     <%= link_to 'Cards', user_cards_path(user) %>
   </div>
 <% end %>

@@ -16,4 +16,10 @@ class User < ActiveRecord::Base
   # many to many relationship
   has_many :user_cards
   has_many :card, through: :user_cards
+
+  # method full_name is concatenating fname + lname together to produce
+  # the user's full name and this is being called in the users < index.html.erb
+  def full_name
+    fname + ' ' + lname
+  end
 end
