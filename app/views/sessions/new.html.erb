@@ -1,7 +1,7 @@
 <!-- this is the page for a new session (when someone logs in) -->
 <h1>Log In</h1>
-<!-- what is this form structure again? -->
-<!-- why are we routing to '/sessions'? -->
+<!-- Login form, '/sessions' is the url the form should post to
+tag instead of for because we're not working with a model object -->
 <%= form_tag '/sessions' do %>
   <%= text_field_tag :email %>
   <%= password_field_tag :password %>

@@ -15,6 +15,8 @@ class Card < ActiveRecord::Base
   # this saves the card type before the card is saved into database
   before_save :set_card_type
 
+  validates :users, presence: true
+
   
   def set_card_type
     # use self. for activerecord instance
@@ -22,6 +24,9 @@ class Card < ActiveRecord::Base
 
     # since we're setting type for this card use self.
       # we have to use self.type otherwitse it will set the type as a variable
+    # we can't use just 'type' because thats a special name in rails that is reserved
+    # we write self because we're telling the model that card_type already 
+    # exists..which is the field in the model (column)
     self.card_type = case first_num
 
     # first_num is in a string..so has to be '3'

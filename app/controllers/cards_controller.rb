@@ -12,17 +12,25 @@ class CardsController < ApplicationController
 
   # method for creating a new card
   def create
-    # card gets created with parameters of card details
-    @card = Card.create(card_params)
+    # new instance of a card with parameters of card details
+    @card = Card.new(card_params)
+    # current user info gets associated with card?? ASK
+    @card.users << current_user
     # if card is valid based on our criteria (validations)
-    # then the card will be created and added to list of all cards
+    # then the card will be saved and added to list of all cards
     # and user will be redirected to list of all cards
     if @card.valid?
+      @card.save!
       redirect_to cards_path
     # if card doesn't fit our criteria, then user will get an
     # error message
     else
       flash[:alert] = "There was an error with your submission"
+  end
+
+  def show
+    # shows a specific card
+    @card = Card.find(params[:id])
   end
 
   private

@@ -1,3 +1,12 @@
+<!-- shows any error messages when adding a new card -->
+<% if @card.errors.any? %>
+  <ul>
+    <% @card.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <!-- for to fill out by the user which creates a new card -->
 <%= form_for @card do |f| %>
   <%= f.label :number %>

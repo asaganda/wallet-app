@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   #we want the user to input their phone number with dashes
   validates_format_of :phone, with: /\d{3}-\d{3}-\d{4}/
   # the account balance must be greater than 0.00
-  validates_numerically_of :balance, { greater_than_or_equal_to: 0}
+  validates_numericality_of :balance, { greater_than_or_equal_to: 0}
 
   # many to many relationship
   has_many :user_cards

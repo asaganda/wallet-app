@@ -1,0 +1,8 @@
+<!-- this shows an individual card...type of card, card number, and expiration month/year -->
+<div class='card'>
+  <ul class='card-attributes'>
+    <li> <%= @card.card_type %> </li>
+    <li> <%= @card.number %> </li>
+    <li> Expires: <%= "#{@card.expiration_month}/#{@card.expiration_year}" %> </li>
+  </ul>
+</div>

@@ -1,4 +1,4 @@
-# what does this do again?
+# helper is a module that we can use to define any helpers that we want to be available to our views
 module ApplicationHelper
   # defines current user for the session so we
   # can use the method elsewhere

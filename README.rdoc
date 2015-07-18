@@ -1,1 +1,53 @@
 rails g resource "..." -- creates the migration file in db, model in app, controller in app
+
+questions i asked jeremy about the wallet app and he answered in a lecture:
+I’m going to list some things that i have questions about regarding your code for the wallet based on github and then you can respond here so i can revisit your response and annotate them into my code as pseudo code, please?
+
+
+DONE- elaborate on the private method in the users controller
+private method..strong parameters. any parameter submitted from a form, parameter needs to be listed in the .permit list.
+
+DONE- what does the application helper do again? I asked a related question earlier today in our class channel regarding why we include this helper in the application controller
+helper is a module that we can use to define any helpers that we want to be available to our views
+ex:
+def greeting_for(users)
+  "hello #{user.fname}!"
+end
+
+we would call greeting_for method elsewhere again
+
+view helpers: returning something as a string which is inside a div, declare it as safe to interpreted by html by calling ".html_safe" on it
+
+include application helper into application controller:
+so we can call all the methods, they're available to use
+
+extend application helper: makes all the methods in the module call methods for the thing that is extending it (we don't really use it)
+
+DONE- what does the
+```render … ‘’ ```
+do again? ex: you wrote this in your application.html.erb in line 11
+
+renders a template: take some html.erb file, evaluate the ruby with the tags, produce a string of html
+  rendering a partial does the same thing
+
+DONE- special form_tag structure with route ‘/sessions’ do in new.html.erb
+login form. tag. url the form should post to
+tag instead of for because we're not working with a model object
+
+DONE- flash notice file is a partial right? why are we using partials? Basically this file is storing the flash messages so that when either the notice/alert is called, each respective message is show to the view?
+correct assumption
+using partial to clean up the code
+
+DONE- why is set_card_type method in the card model showing self.card_type instead of self.type? reference: app/models/card.rb, https://github.com/jraines/rails-wallet/commit/edb765238625fb7ba4834e3c2f9dc0bd5bbd2734
+we can't use the column name "type" because it is reserved for rails (without any configuration)
+we write self because we're telling it that it already exists..which is the field in the model (column)
+
+DONE- why do we change the destroy method in the sessions controller where we include the same line as above "session[:user_id]  = nil” ? 
+better solution is to write session.clear
+
+DONE- why we do we add “session[:user_id] = @user.id” to users controller?
+this logs the new user in automatically after they have signed up
+
+DONE- what does line 12 after “sessions_path….” of application.html.erb do?
+link_to Logout, want this link to go to the session path, delete request.
+he changed it to a shorthand way: must look at commits to see new solution

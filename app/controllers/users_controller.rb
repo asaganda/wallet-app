@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # get redirected to the users path
     if @user.valid?
       flash[:notice] = "Thanks for signing up"
-      # what is this line for?
+      # this logs the new user in automatically after they have signed up
       session[:user_id] = @user.id
       redirect_to users_path
     # if the user is invalid, they also get a flash message
@@ -30,7 +30,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # what is this block of code again?
+  
+  
+  # any parameter submitted from a form needs 
+  # to be listed in the .permit list
+  # only i can see this information now that
+  # it is private
   private
 
   def user_params
