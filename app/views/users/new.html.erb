@@ -1,11 +1,5 @@
-<!-- If any new user has an error/problem creating their login, prompt the full error messages -->
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<!-- we are rendering the errors partial file from shared < errors which has to do with the user model -->
+<%= render 'shared/errors', model: @user %>
 
 <!-- form for a new user (create) -->
 <%= form_for @user do |f| %>

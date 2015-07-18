@@ -1,11 +1,5 @@
-<!-- shows any error messages when adding a new card -->
-<% if @card.errors.any? %>
-  <ul>
-    <% @card.errors.full_messages.each do |msg| %>
-      <li> <%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<!-- we are rendering the errors partial file from shared < errors which has to do with the card model -->
+<%= render 'shared/errors', model: @card %>
 
 <!-- for to fill out by the user which creates a new card -->
 <%= form_for @card do |f| %>
