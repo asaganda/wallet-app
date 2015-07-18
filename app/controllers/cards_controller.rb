@@ -40,6 +40,14 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
+  def expired
+    # shows list of cards that are expired
+    @cards = Card.expired
+    # does this show a list of all cards??
+    render :index
+  end
+  
+
   private
   # what does this do
   def card_params

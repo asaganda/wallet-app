@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :cards
+  # what does this block of code do?
+  # why is it nested also?
+  resources :cards do
+    collection do
+      get 'expired'
+    end
+  end
   
   resources :users do
     resources :cards

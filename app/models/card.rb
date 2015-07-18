@@ -12,10 +12,19 @@ class Card < ActiveRecord::Base
   # expiration year can be between year 2015 and 2115
   validates :expiration_year, inclusion: {in: (2015..2115)}
 
-  # this saves the card type before the card is saved into database
-  before_save :set_card_type
+  # this saves the card type and expiration date of card before the card is saved into database
+  before_save :set_card_type, :set_expiration_date
+
+  # don't know why this is here?
+  def set_expiration_date
+    self.expiration_date = DateTime.new(self.expiration_year,
+                                        self.expiration_month,
+                                        28)
+  end
 
   validates :users, presence: true
+  # confused on what this does?
+  scope :expired, lambda { where('expiration_date < ?', Time.new)}
 
   
   def set_card_type
