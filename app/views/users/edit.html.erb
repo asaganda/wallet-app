@@ -1,0 +1,13 @@
+<!-- we are rendering the errors partial file from shared < errors which has to do with the user model -->
+<%= render 'shared/errors', model: @user %>
+
+<!-- form for the user to update their account details -->
+<%= form_for @user do |f| %>
+  <%= f.text_field :fname, placeholder: 'First Name' %><br>
+  <%= f.text_field :lname, placeholder: 'Last Name' %><br>
+  <%= f.text_field :email, placeholder: 'Email' %><br>
+  <%= f.text_field :phone, placeholder: 'Phone' %><br>
+  <%= f.password_field :password, placeholder: 'Password' %><br>
+  <%= f.password_field :password_confirmation, placeholder: 'Confirm password' %><br>
+  <%= f.submit 'Sign Up' %>
+<% end %>

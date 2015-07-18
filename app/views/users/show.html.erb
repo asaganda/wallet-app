@@ -1,0 +1,7 @@
+<!-- Logged in user's profile page with their full name and a link to the cards they have/the cards they have added -->
+<h1> Show page for user </h1>
+  <div>
+    <%= @user.full_name %>
+    <!-- the path brings the user to their list of cards which they've added -->
+    <%= link_to 'Cards', user_cards_path(@user) %>
+  </div>
