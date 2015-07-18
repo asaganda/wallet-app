@@ -9,5 +9,8 @@
   <%= f.text_field :phone, placeholder: 'Phone' %><br>
   <%= f.password_field :password, placeholder: 'Password' %><br>
   <%= f.password_field :password_confirmation, placeholder: 'Confirm password' %><br>
-  <%= f.submit 'Sign Up' %>
+  <%= f.submit 'Edit' %>
 <% end %>
+
+<!-- this link delets the user's account who is currently signed in -->
+<%= link_to "Delete Account", user_path(@user), method: :delete %>

@@ -17,6 +17,17 @@ class User < ActiveRecord::Base
   has_many :user_cards
   has_many :card, through: :user_cards
 
+  before_destroy :destroy_solely_owned_cards
+
+  # what does this entire code block do?
+  def destroy_solely_owned_cards
+    all_my_cards = self.cards
+    owned_cards = all_my_cards.select do |card|
+                    cards.users.length == 1
+                  end
+    owned_cards.each &:destroy!
+  end
+
   # method full_name is concatenating fname + lname together to produce
   # the user's full name and this is being called in the users < index.html.erb
   def full_name

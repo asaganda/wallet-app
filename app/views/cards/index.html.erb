@@ -1,8 +1,11 @@
-this will loop each card and show each one (list of cards)
+<!-- this will loop each card and show each one (list of cards) -->
 <h1>All the Cards</h1>
 <% @cards.each do |card| %>
-  <div class="card">
+  <!-- what is this ruby code trying to show to the user?? -->
+  <div class="<%= "card #{card.card_type.downcase.gsub(/\s/,'')}"%>" >
+
     <ul class="card-attributes">
+      <li> <%= card.users.map(&:full_name).join(', ') %></li>
       <!-- show card type -->
       <li> <%= card.card_type %> </li>
       <!-- show card number -->
@@ -10,5 +13,6 @@ this will loop each card and show each one (list of cards)
       <!-- show expiration month/year -->
       <li> Expires: <%= "#{card.exiration_month}/#{card.expiration_year}" %> %> </li>
     </ul>
+
   </div>
 <% end %>

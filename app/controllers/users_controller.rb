@@ -60,6 +60,18 @@ class UsersController < ApplicationController
     # redirects the user to their newly update profile?
     redirect_to user_path(@user)
   end
+
+  # this method destroys the user's session or the user account as a whole?
+  def destroy
+    # finds the current user
+    @user = User.find params[:id]
+    # why do we have this?
+    @user.destroy!
+    session.clear
+    # flash message shows when the user's session is over
+    flash[:notice] = "Bye."
+    redirect_to users_path
+  end
   
   
   # any parameter submitted from a form needs 

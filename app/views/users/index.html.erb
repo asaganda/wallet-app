@@ -1,8 +1,10 @@
 <!-- this lists all the users, their full names -->
 <!-- then shows a link to each user's index(list) of cards they have -->
+<!-- also shows a link to each user's edit profile page/form where the user can edit their profile -->
 <% @users.each do |user| %>
   <div>
     <%= user.full_name %>
     <%= link_to 'Cards', user_cards_path(user) %>
+    <%= link_to 'Edit', edit_user_path(user) %>
   </div>
 <% end %>
