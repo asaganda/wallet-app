@@ -2,7 +2,13 @@ class CardsController < ApplicationController
 
   # shows a list of all cards
   def index
-    @cards = Card.all
+    # if a user is present(logged in), show the user's cards
+    if params[:user_id].present?
+      @user = User.find params[:user_id]
+      @cards = @user.cards
+    # if a user is not present(not logged in), just show all the cards
+    else
+      @cards = Card.all
   end
 
   # creates an new instance of a card
@@ -26,6 +32,7 @@ class CardsController < ApplicationController
     # error message
     else
       flash[:alert] = "There was an error with your submission"
+    end
   end
 
   def show
