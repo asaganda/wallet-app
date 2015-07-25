@@ -40,10 +40,11 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
+
   def expired
     # shows list of cards that are expired
     @cards = Card.expired
-    # does this show a list of all cards??
+    # shows list of all cards, even expired in this case
     render :index
   end
   

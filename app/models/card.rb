@@ -15,15 +15,22 @@ class Card < ActiveRecord::Base
   # this saves the card type and expiration date of card before the card is saved into database
   before_save :set_card_type, :set_expiration_date
 
-  # don't know why this is here?
+  # the model should know how to create an expiration_date
+  # based on a month & year
   def set_expiration_date
     self.expiration_date = DateTime.new(self.expiration_year,
                                         self.expiration_month,
                                         28)
   end
 
+  # This is just ensuring that we don't have any orphaned cards.  
+  # We want every card to have at least one user
   validates :users, presence: true
-  # confused on what this does?
+  
+  # confused on what the scope does?
+  # the lambda part is there because we're storing a time based query
+  # so that the time part is evaluated at execution time, not when the
+  # ruby file is loaded
   scope :expired, lambda { where('expiration_date < ?', Time.new)}
 
   

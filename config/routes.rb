@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  # what does this block of code do?
-  # why is it nested also?
+  # when we’re adding collection, we are 
+  # making the ‘cards/expired’ path available 
+  # and then the cards controller knows to take 
+  # that action and what to do with it because we 
+  # have the expired method in the cards controller
   resources :cards do
     collection do
       get 'expired'
     end
   end
+
+  post '/share-card' => 'user_card#create', as: 'share_card'
   
+  # this nesting is done here so that we can have 
+  # the types of routes such as "user_cards_path" in 
+  # app/views/users/index.html.erb
   resources :users do
     resources :cards
   end

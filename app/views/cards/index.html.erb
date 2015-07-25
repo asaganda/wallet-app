@@ -5,9 +5,10 @@
   <div class="<%= "card #{card.card_type.downcase.gsub(/\s/,'')}"%>" >
 
     <ul class="card-attributes">
+      <!-- So since any card is shareable and can have more than 1 person associated with it, we are listing the different users/names the card is shared with -->
       <li> <%= card.users.map(&:full_name).join(', ') %></li>
       <!-- show card type -->
-      <li> <%= card.card_type %> </li>
+      <li> <%= link_to card.card_type, card_path(card) %> </li>
       <!-- show card number -->
       <li> <%= card.number %> </li>
       <!-- show expiration month/year -->

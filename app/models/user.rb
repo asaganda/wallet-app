@@ -17,9 +17,41 @@ class User < ActiveRecord::Base
   has_many :user_cards
   has_many :card, through: :user_cards
 
+  # before we destroy the user and their info/records/cards,
+  # we destroy their cards associated with the user
   before_destroy :destroy_solely_owned_cards
 
-  # what does this entire code block do?
+  # we want the password hash to be generated before we create the new user
+  before_create :encrypt_password
+
+  # this line is what makes password in the argument just below within encrypt_password method work.
+  # this line ensures that we can store password on our user instance, just long
+  # enough to generate the password hash
+  attr_accessor :password
+
+  # encrypts password
+  def encrypt_password
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+  end
+
+  # this authenticates all users
+  def self.authenticate(email, password)
+    # finds the user based on email, if found user, then password authentication is done just below
+    user = User.where(email: email).first
+
+    # password authentication done here
+    # when the user's password when they are trying to login and the user's password when they 
+    # first created their password are matched exactly, then access is granted
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+
+
+  # deletes any cards for which the destroyed user was the sole user
   def destroy_solely_owned_cards
     all_my_cards = self.cards
     owned_cards = all_my_cards.select do |card|

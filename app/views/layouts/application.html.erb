@@ -13,7 +13,7 @@
 <%= render 'shared/flashes' %>
 <!-- this creates a link of logout to the current user who is currently in a session -->
 <!-- we created a shorthand so we only have to write 'logout_path' here, the routes.rb has an extra line of code --> 
-<%= link_to 'Logout', logout_path, method: :delete if currrent_user %>
+<%= link_to 'Logout', logout_path, method: :delete if current_user %>
 
 <%= yield %>
 

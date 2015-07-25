@@ -48,7 +48,11 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     # just setting the variable 'p' to user_params
     p = user_params
-    # if the user's password is blank, delete their password? ASK!
+    # here we are checking to see if the user updated some
+    # part of their info, but didn't enter anything for password.
+    # we infer from this that they weren't trying to update their
+    # password, and so this method removes the password from the
+    # params that we pass into the update method.
     if user_params[:password].blank?
       p.delete(:password)
       p.delete(:password_confirmation)
@@ -61,11 +65,11 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  # this method destroys the user's session or the user account as a whole?
+  # this method destroys the user's account as a whole
   def destroy
     # finds the current user
     @user = User.find params[:id]
-    # why do we have this?
+    # we're destroying the user's whole record
     @user.destroy!
     session.clear
     # flash message shows when the user's session is over
