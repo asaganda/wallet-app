@@ -1,6 +1,6 @@
 class UserCardsController < ApplicationController
   def create
-    # this finds the user card info
+    # this finds the user info and card info
     user = User.find user_card_params[:user_id]
     UserCard.create user_card_params
     redirect_to user_cards_path(user)

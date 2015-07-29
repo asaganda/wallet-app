@@ -25,7 +25,8 @@ class Card < ActiveRecord::Base
 
   # This is just ensuring that we don't have any orphaned cards.  
   # We want every card to have at least one user
-  validates :users, presence: true
+  
+  # validates :users, presence: true
   
   # confused on what the scope does?
   # the lambda part is there because we're storing a time based query

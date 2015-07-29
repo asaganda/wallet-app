@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     else
       flash[:alert] = "Invalid Credentials"
       redirect_to new_session_path
+    end
   end
 
   # this destroys the current session
@@ -27,5 +28,4 @@ class SessionsController < ApplicationController
     flash[:notice] = "Logged Out"
     redirect_to root_path
   end
-
 end

@@ -43,5 +43,7 @@ group :development, :test do
   gem 'spring'
   # gem for password encryption
   gem 'bcrypt-ruby', require: 'bcrypt'
+
+  gem 'pry-rails'
 end
 

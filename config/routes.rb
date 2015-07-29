@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   # this relates to the logout link in application.html.erb
-  delete '/logout' => 'session#destroy', as: 'logout'
+  delete '/logout' => 'sessions#destroy', as: 'logout'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

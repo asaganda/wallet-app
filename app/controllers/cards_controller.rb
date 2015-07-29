@@ -9,6 +9,7 @@ class CardsController < ApplicationController
     # if a user is not present(not logged in), just show all the cards
     else
       @cards = Card.all
+    end
   end
 
   # creates an new instance of a card
@@ -19,18 +20,19 @@ class CardsController < ApplicationController
   # method for creating a new card
   def create
     # new instance of a card with parameters of card details
-    @card = Card.new(card_params)
+    @card = Card.create(card_params)
     # current user info gets associated with card?? ASK
-    @card.users << current_user
     # if card is valid based on our criteria (validations)
     # then the card will be saved and added to list of all cards
     # and user will be redirected to list of all cards
     if @card.valid?
       @card.save!
+      
       redirect_to cards_path
     # if card doesn't fit our criteria, then user will get an
     # error message
     else
+      render :new
       flash[:alert] = "There was an error with your submission"
     end
   end
